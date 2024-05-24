@@ -1,6 +1,14 @@
 {
     "name": "msafadi/laravel-eloquent-l10n",
     "description": "Laravel Eloquent Localization",
+    "keywords": [
+        "laravel",
+        "eloquent",
+        "model",
+        "translations",
+        "localization",
+        "l10n"
+    ],
     "type": "library",
     "require": {
         "php": "^8.2",
@@ -8,7 +16,7 @@
         "illuminate/console": "^10.0|^11.0",
         "illuminate/database": "^10.0|^11.0",
         "illuminate/support": "^10.0|^11.0",
-        "illuminate/config": "11.x-dev"
+        "illuminate/config": "^10.0|^11.0"
     },
     "require-dev": {
         "laravel/pint": "^1.13",
