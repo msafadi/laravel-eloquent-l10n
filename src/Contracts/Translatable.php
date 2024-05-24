@@ -2,6 +2,8 @@
 
 namespace Safadi\Eloquent\L10n\Contracts;
 
+use Illuminate\Database\Eloquent\Model;
+
 interface Translatable
 {
     /**
@@ -15,7 +17,7 @@ interface Translatable
      * Set model locale
      * 
      * @param string $locale
-     * @return Translatable
+     * @return  Model|Translatable
      */
-    public function setLocale(string $locale): Translatable;
+    public function setLocale(string $locale): Model|Translatable;
 }
