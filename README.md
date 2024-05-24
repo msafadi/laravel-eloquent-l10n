@@ -64,8 +64,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Safadi\Eloquent\L10n\Concerns\HasTranslationsModel;
+use Safadi\Eloquent\L10n\Contracts\Translatable;
 
-class Post extends Model
+class Post extends Model implements Translatable
 {
     use HasTranslationsModel;
 }
@@ -168,12 +169,6 @@ echo Post::withoutTranslations()->count();
 Use the artisan command to generate a starting point for your translations table migration:
 
 ```bash
-php artisan l10n:table MyModel
-```
-
-or,
-
-```bash
 php artisan make:l10n-table MyModel
 ```
 
@@ -192,8 +187,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Safadi\Eloquent\L10n\Concerns\\HasTranslatableAttributes;
+use Safadi\Eloquent\L10n\Contracts\Translatable;
 
-class Post extends Model
+class Post extends Model implements Translatable
 {
     use HasTranslatableAttributes;
 

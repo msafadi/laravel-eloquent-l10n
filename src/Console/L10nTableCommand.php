@@ -3,7 +3,6 @@
 namespace Safadi\Eloquent\L10n\Console;
 
 use Illuminate\Console\MigrationGeneratorCommand;
-use Illuminate\Database\Capsule\Manager;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -84,17 +83,17 @@ class L10nTableCommand extends MigrationGeneratorCommand
     protected function replaceMigrationPlaceholders($path, $table)
     {
         $columns = $this->schemaColumns();
-        $forigenId = $this->forigenKeyName();
+        $foreignId = $this->foreignKeyName();
         $stub = str_replace(
-            ['{{table}}', '{{forigenKey}}', '{{columns}}'], 
-            [$table, $forigenId, $columns], 
+            ['{{table}}', '{{foreignKey}}', '{{columns}}'], 
+            [$table, $foreignId, $columns], 
             $this->files->get($this->migrationStubFile())
         );
 
         $this->files->put($path, $stub);
     }
 
-    protected function forigenKeyName()
+    protected function foreignKeyName()
     {
         $model = $this->qualifyModel($this->argument('model'));
         if (class_exists($model)) {

@@ -16,7 +16,7 @@ class L10n implements CastsAttributes
     public function get(Model $model, string $key, mixed $value, array $attributes): string
     {
         $json = json_decode($value, true);
-        return $json[$model->getLocale()] ?? null;
+        return $json[$model->getLocale()] ?? '';
     }
  
     /**

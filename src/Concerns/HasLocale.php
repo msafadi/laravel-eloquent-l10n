@@ -2,6 +2,7 @@
 
 namespace Safadi\Eloquent\L10n\Concerns;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Safadi\Eloquent\L10n\Contracts\Translatable;
 
@@ -46,7 +47,7 @@ trait HasLocale
      * @param string $locale
      * @return $this
      */
-    public function setLocale(string $locale): Translatable
+    public function setLocale(string $locale): Model|Translatable
     {
         static::$locale = $locale;
         return $this;

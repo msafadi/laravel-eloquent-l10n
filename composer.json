@@ -43,5 +43,12 @@
             "email": "m.safadi@hotmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Safadi\\Eloquent\\L10n\\EloquentL10nServiceProvider"
+            ]
+        }
+    }
 }

@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('{{table}}', function (Blueprint $table) {
-            $table->forigenId('{{forigenKey}}')->constrained()->cascadeOnDelete();
+            $table->foreignId('{{foreignKey}}')->constrained()->cascadeOnDelete();
             $table->string('locale', 5);
             {{columns}}
             $table->timestamps();
 
-            $table->primary(['{{forigenKey}}', 'locale']);
+            $table->primary(['{{foreignKey}}', 'locale']);
         });
     }
 

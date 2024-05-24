@@ -86,7 +86,7 @@ trait HasTranslationsModel
     }
 
     /**
-     * Get the model forigen key in translations table
+     * Get the model foreign key in translations table
      * 
      * @return string
      */
