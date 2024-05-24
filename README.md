@@ -39,6 +39,57 @@ By providing a flexible and developer-friendly solution, this package helps you 
     php artisan vendor:publish --provider="Safadi\Eloquent\L10n\EloquentL10nServiceProvider"
     ```
 
+3. Add the package's service provider class `EloquentL10nServiceProvider` to the application's providers array
+
+    - Laravel 11.x
+
+    ```php
+    <?php
+    // Laravel v11.x
+    // file: bootstrap/app.php
+
+    use Illuminate\Foundation\Application;
+    use Illuminate\Foundation\Configuration\Exceptions;
+    use Illuminate\Foundation\Configuration\Middleware;
+    use Safadi\Eloquent\L10n\EloquentL10nServiceProvider;
+
+    return Application::configure(basePath: dirname(__DIR__))
+        ->withRouting(
+            web: __DIR__.'/../routes/web.php',
+            api: __DIR__.'/../routes/api.php',
+            commands: __DIR__.'/../routes/console.php',
+            health: '/up',
+        )
+        // ...
+        ->withProviders([
+            // ...
+            EloquentL10nServiceProvider::class
+        ])
+        ->create();
+    ```
+
+    - Laravel 10.x and older
+
+    ```php
+    <?php
+    // Laravel 10.x and older
+    // file: config/app.php
+
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        /*
+         * Package Service Providers...
+         */
+        EloquentL10nServiceProvider::class
+
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        // ...
+
+    ])->toArray(),
+    ```
+
 ## Configuration
 
 The package configuration file (`config/eloquent-l10n.php`) provides options to tailor the package to your project's specific needs:
@@ -56,6 +107,7 @@ The package configuration file (`config/eloquent-l10n.php`) provides options to 
 #### 1.1. Model Setup
 
 -   Incorporate the `HasTranslationsModel` trait into your model class.
+-   Verify that your model implements the `Safadi\Eloquent\L10n\Contracts\Translatable` contract.
 
 ```php
 <?php
@@ -179,6 +231,7 @@ Replace MyModel with your actual model class name or the table name.
 #### 2.1. Model Setup
 
 -   Include the `HasTranslatableAttributes` trait in your model class.
+-   Verify that your model implements the `Safadi\Eloquent\L10n\Contracts\Translatable` contract.
 
 ```php
 <?php
