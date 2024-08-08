@@ -18,13 +18,17 @@ class L10nScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $columns = array_merge($builder->getQuery()->columns ?? ['*'], $model->getL10nAttributes());
+        $columns = array_merge($builder->getQuery()->columns ?? [$model->getTable() . '.*'], $model->getL10nAttributes());
         $builder->select($columns);
         $builder->leftJoin(
             $model->getL10nTable(), function ($join) use ($model) {
-                $join->on($model->getL10nForigenKeyName(), '=', $model->getKeyName())
-                     ->where('locale', '=', $model->getLocale());
-            }
+            $join->on($model->getL10nForigenKeyName(), '=', $model->getKeyName())
+                ->where('locale', '=', $model->getLocale())
+                ->orWhere(function($query) use ($model) {
+                    $query->on($model->getL10nForigenKeyName(), '=', $model->getKeyName())
+                        ->where('locale', '=', $model->getFallbackLocale());
+                });
+        }
         );
     }
 

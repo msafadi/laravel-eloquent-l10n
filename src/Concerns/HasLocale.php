@@ -41,6 +41,15 @@ trait HasLocale
         return static::$locale;
     }
 
+    public function getFallbackLocale(): string
+    {
+        if (!static::$fallback_locale) {
+            static::$fallback_locale = App::getFallbackLocale();
+        }
+
+        return static::$fallback_locale;
+    }
+
     /**
      * Set the current translations locale
      * 
